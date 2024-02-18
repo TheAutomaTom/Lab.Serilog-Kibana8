@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Elk8.Lab.Api.Controllers
 {
   [ApiController]
-  [Route("[controller]")]
+  [Route("[controller]/[action]")]
   public class WeatherForecastController : ControllerBase
   {
     private static readonly string[] Summaries = new[]
@@ -21,6 +21,10 @@ namespace Elk8.Lab.Api.Controllers
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
+      _logger.LogInformation( "Information!");
+      _logger.LogWarning(     "LogWarning!");
+      _logger.LogCritical(    "LogCritical!");
+
       return Enumerable.Range(1, 5).Select(index => new WeatherForecast
       {
         Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
