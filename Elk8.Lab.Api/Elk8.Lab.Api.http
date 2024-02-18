@@ -1,0 +1,6 @@
+@Elk8.Lab.Api_HostAddress = http://localhost:5208
+
+GET {{Elk8.Lab.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
