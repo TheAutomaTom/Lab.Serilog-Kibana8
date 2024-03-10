@@ -5,15 +5,15 @@ namespace Elk8.Lab.Api.Controllers
 {
   [ApiController]
   [Route("[controller]/[action]")]
-  public class WeatherForecastController : ControllerBase
+  public class ElasticsearchClient8Controller : ControllerBase
   {
     readonly IConfiguration _config;
     readonly ElasticsearchClient _client;
     readonly string _defaultIndex = "my_index";
-    readonly ILogger<WeatherForecastController> _logger;
+    readonly ILogger<ElasticsearchClient8Controller> _logger;
     readonly Random _rando = new Random();
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration config)
+    public ElasticsearchClient8Controller(ILogger<ElasticsearchClient8Controller> logger, IConfiguration config)
     {
       _config = config;
       _logger = logger;
@@ -29,6 +29,7 @@ namespace Elk8.Lab.Api.Controllers
     [HttpPost]
     public async Task<IActionResult> CreateRando()
     {
+      _logger.LogInformation("CreateRando() Begin");
       var wf = new WeatherForecast()
       {
         Date = DateOnly.FromDateTime(DateTime.Now.AddDays(_rando.Next(365))),
@@ -40,8 +41,11 @@ namespace Elk8.Lab.Api.Controllers
 
       if (response.IsValidResponse)
       {
+        //_logger.LogInformation("CreateRando() response.IsValidResponse");
         return Ok(response.Result);
       }
+
+      //_logger.LogCritical("CreateRando() response.IsValidResponse");
       return BadRequest(response.Result);
 
     }
