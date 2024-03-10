@@ -41,11 +41,11 @@ namespace Elk8.Lab.Api.Controllers
 
       if (response.IsValidResponse)
       {
-        //_logger.LogInformation("CreateRando() response.IsValidResponse");
+        _logger.LogInformation("CreateRando() response.IsValidResponse");
         return Ok(response.Result);
       }
 
-      //_logger.LogCritical("CreateRando() response.IsValidResponse");
+      _logger.LogCritical("CreateRando() response.IsValidResponse");
       return BadRequest(response.Result);
 
     }

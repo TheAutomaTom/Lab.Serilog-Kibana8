@@ -1,7 +1,7 @@
 using System.Reflection;
 using Serilog;
 using Serilog.Exceptions;
-//using Serilog.Sinks.Elasticsearch;
+using Serilog.Sinks.Elasticsearch;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,15 +21,15 @@ Log.Logger = new LoggerConfiguration()
   .Enrich.WithExceptionDetails()
   .WriteTo.Debug()
   .WriteTo.Console()
-  //.WriteTo.Elasticsearch(
-  //  new ElasticsearchSinkOptions(new Uri(Configuration["Elastic:Uri"]))
-  //  {
-  //    AutoRegisterTemplate = true,
-  //    IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.Replace(".", "-")}-{environment}-{DateTime.UtcNow:yyyy-MM-dd-HH-mm-ss}",
-  //    NumberOfReplicas = 2,
-  //    NumberOfShards = 1
-  //  }
-  //)
+  .WriteTo.Elasticsearch(
+    new ElasticsearchSinkOptions(new Uri(Configuration["Elastic:Url"]))
+    {
+      AutoRegisterTemplate = true,
+      IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.Replace(".", "-")}-{environment}-{DateTime.UtcNow:yyyy-MM-dd-HH-mm-ss}",
+      NumberOfReplicas = 2,
+      NumberOfShards = 1
+    }
+  )
   .Enrich.WithProperty("Environment", environment)
   .ReadFrom.Configuration(Configuration)
   .CreateLogger();
