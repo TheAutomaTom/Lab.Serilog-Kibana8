@@ -1,3 +1,5 @@
+Demo running Elastic Search and Kibana on Docker. 
+
 # Environment setup
 
 - Launch `Docker for Windows`.
