@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="EnvSetup\" />
+		<Folder Include="ElkContainer\" />
 	</ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 using System.Reflection;
+using Elk8.Lab.Api.DI;
 using Serilog;
 using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
@@ -9,30 +10,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-var Configuration = new ConfigurationBuilder()
+var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+var config = new ConfigurationBuilder()
   .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-  .AddJsonFile($"appsettings.{environment}.json", optional: true
+  .AddJsonFile($"appsettings.{env}.json", optional: true
   ).Build();
 
-// Setup Logger
-Log.Logger = new LoggerConfiguration()
-  .Enrich.FromLogContext()
-  .Enrich.WithExceptionDetails()
-  .WriteTo.Debug()
-  .WriteTo.Console()
-  .WriteTo.Elasticsearch(
-    new ElasticsearchSinkOptions(new Uri(Configuration["Elastic:Url"]))
-    {
-      AutoRegisterTemplate = true,
-      IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.Replace(".", "-")}-{environment}-{DateTime.UtcNow:yyyy-MM-dd-HH-mm-ss}",
-      NumberOfReplicas = 2,
-      NumberOfShards = 1
-    }
-  )
-  .Enrich.WithProperty("Environment", environment)
-  .ReadFrom.Configuration(Configuration)
-  .CreateLogger();
+
+
+
+builder.Services.ConfigureLogging(config, env ??= "Local");
+
 builder.Host.UseSerilog();
 
 
@@ -52,3 +40,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
