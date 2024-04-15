@@ -1,8 +1,22 @@
-# Environment setup
+# ELK 8 Demo 
+
+<small>Version: 240415</small>
+
+<small>Author:</small>
+
+- Thomas Grossi 
+- Nashville, TN 
+- TheAutomaTom@gmail.com 
+- https://www.SurrealityCheck.org
+
+## Environment setup
 
 - Launch `Docker for Windows`.
 - Open an command prompt at the directory containing `compose.yaml`.
 - Run `docker compose up -d`.
+
+## Observing the ELK stack operate
+
 - Kibana 
 	- Verify connectivity
 		- Go to `http://localhost:5601/app/home/`		- Click the `hamburger` button in the top left, then select `Management/ Stack Management`
@@ -21,7 +35,7 @@
 		- In Kibana, search for `IntentionallyThrow`
 		- Observe the results!
 
-# Technical References
+## Technical References
 
 - https://www.elastic.co/guide/en/kibana/current/data-views.html
 
