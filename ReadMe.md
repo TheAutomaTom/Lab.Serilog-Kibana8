@@ -1,6 +1,6 @@
-# ELK 8 Demo 
+﻿# Serilog-Kibana8.Lab
 
-<small>Version: 240415</small>
+<small>Version: 2404121</small>
 
 <small>Author:</small>
 
@@ -12,19 +12,22 @@
 ## Environment setup
 
 - Launch `Docker for Windows`.
-- Open an command prompt at the directory containing `compose.yaml`.
-- Run `docker compose up -d`.
+- ~~Open an command prompt at the directory containing `compose.yaml`.~~
+- ~~Run `docker compose up -d`.~~
+
+- After a lot of experimentation, I found using this repo to set up ELK to be much more valuable than creating my own local-dev docker compose files: https://github.com/deviantony/docker-elk
 
 ## Observing the ELK stack operate
 
 - Kibana 
 	- Verify connectivity
-		- Go to `http://localhost:5601/app/home/`		- Click the `hamburger` button in the top left, then select `Management/ Stack Management`
+		- Go to `http://localhost:5601/app/home/`		- Click the `☰` hamburger button in the top left, then select `Management/ Stack Management`
 		- Select `Index Management`
 		- Observe your created logging index with configured primary shards and replicas
 		- Note the sane of your index for the next step.
 	- Configure Logging Stream
-		- Click the `hamburger` button in the top left, then select `Analytics/ Discover`		
+		- Click the `☰` button in the top left, then select `Analytics/ Discover`		
+		- On the second-from-top toolbar, under the `☰` button, click `V` carrot to open the dropdown.
 		- Select `Create data view``
 			- Set `Name` as appropriate
 			- Set `Index pattern` to `$"{name-of-your-index-before-date}-*"` __(`*` is a wildcard*)__

@@ -1,8 +1,5 @@
-using System.Reflection;
 using Elk8.Lab.Api.DI;
 using Serilog;
-using Serilog.Exceptions;
-using Serilog.Sinks.Elasticsearch;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,12 +14,11 @@ var config = new ConfigurationBuilder()
   ).Build();
 
 
+builder.Services.AddElasticsearchAsSingleton(config);
 
 
-builder.Services.ConfigureLogging(config, env ??= "Local");
-
+builder.Services.ConfigureLogging(config, env);
 builder.Host.UseSerilog();
-
 
 
 var app = builder.Build();

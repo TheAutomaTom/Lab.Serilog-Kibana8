@@ -1,7 +1,7 @@
-﻿using Serilog.Sinks.Elasticsearch;
+﻿using System.Reflection;
 using Serilog;
-using System.Reflection;
 using Serilog.Exceptions;
+using Serilog.Sinks.Elasticsearch;
 
 namespace Elk8.Lab.Api.DI
 {
@@ -18,6 +18,7 @@ namespace Elk8.Lab.Api.DI
         .WriteTo.Elasticsearch(
           new ElasticsearchSinkOptions(new Uri(config["Elastic:Url"]))
           {
+            ModifyConnectionSettings = x => x.BasicAuthentication(config["Elastic:Username"], config["Elastic:Password"]),
             AutoRegisterTemplate = true,
 
             // TODO: Move to Appsettings
