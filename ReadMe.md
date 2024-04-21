@@ -11,13 +11,11 @@
 
 ## Environment setup
 
-- Launch `Docker for Windows`.
-- ~~Open an command prompt at the directory containing `compose.yaml`.~~
-- ~~Run `docker compose up -d`.~~
-
-- After a lot of experimentation, I found using this repo to set up ELK to be much more valuable than creating my own local-dev docker compose files: https://github.com/deviantony/docker-elk
+- See instructions at `.\Docker-ELK.Fork.Wrapper\README.md` for setting up the ELK stack with this forked repo: https://github.com/deviantony/docker-elk
 
 ## Observing the ELK stack operate
+
+- Passwords are set in `.\Docker-ELK.Fork.Wrapper\.env` _(default: elastic/changeme)_
 
 - Kibana 
 	- Verify connectivity
