@@ -1,0 +1,3 @@
+[submodule "fork-docker-elk"]
+	path = fork-docker-elk
+	url = https://github.com/TheAutomaTom/fork-docker-elk
