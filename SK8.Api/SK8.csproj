@@ -21,8 +21,4 @@
 		<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.3" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="ElkContainer\" />
-	</ItemGroup>
-
 </Project>
