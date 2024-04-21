@@ -15,6 +15,8 @@
 
 ## Observing the ELK stack operate
 
+- Passwords are set in `.\Docker-ELK.Fork.Wrapper\.env` _(default: elastic/changeme)_
+
 - Kibana 
 	- Verify connectivity
 		- Go to `http://localhost:5601/app/home/`		- Click the `☰` hamburger button in the top left, then select `Management/ Stack Management`
